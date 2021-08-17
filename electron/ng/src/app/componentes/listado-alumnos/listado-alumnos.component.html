@@ -1,0 +1,53 @@
+<div class="row mt-3 ml-5 mr-5" *ngIf="lista_alumnos">
+    <div class="col">
+        <div class="row d-flex justify-content-around align-items-center align-items-center">
+                <button *ngIf="modo_edicion == 'true'" type="button"  class="btn btn-success shadow mb-3"  style=" margin: 10px;" routerLink="/registro/nuevo-registro" > 
+                    <svg width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                        <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                      </svg>
+                    registrar alumno
+                </button>
+                
+                    <select  class="form-select mb-3  btn btn-outline-primary bg-primary text-light shadow " name="carrera_elegir " [(ngModel)] =" elegir_carrera" >
+                        <option value="" disabled selected hidden>filtro Carrera</option>
+                        <option [value]="'*'" *ngIf="prefiltro != 'materias' "> no filtrar</option>
+                        <option [value]="'Educación Especial'">Educación Especial</option>
+                        <option [value]="'Educación Física'">Educación Física</option>
+                        <option [value]="'Educación Preescolar'">Educación Preescolar</option>
+                        <option [value]="'-'" *ngIf="prefiltro != 'materias' "> por inscribir </option>
+                        <option [value]="'inscritos'" > inscritos </option>
+                      </select>
+
+                <div class="form-group mb-3 " >
+                    <input class="from-control shadow" type="text" name="busqueda_filtro" placeholder="buscar persona"                     [(ngModel)] = "busqueda_filtro">
+                </div>
+        </div>  
+        <div class="col-md-12 "> 
+            <table class="table bg-light table-bordered shadow text-center">
+                <thead class="bg-primary text-light">
+                    <tr>
+                        <th> cedula </th>
+                        <th> nombre </th>
+                        <th> apellido </th>
+                        <th> carrera </th>
+                        <th> -</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-light text-dark" *ngFor="let alumno of lista_alumnos | filtroCarrera: elegir_carrera |filtroBusqueda: busqueda_filtro | slice: (page_number-1) * page_size : page_number * page_size">
+                        <th scope="row">{{alumno.tipo_ci}}-{{alumno.ci}}</th>
+                        <th>{{alumno.nombre}} {{alumno.segundo_nombre}}</th>
+                        <th>{{alumno.apellido}} {{alumno.segundo_apellido}}</th>
+                        <th>{{alumno.carrera}}</th>
+                        <th> <button type="button" class="btn btn-success shadow" [routerLink]="[link]" [queryParams]="{id: alumno.id} "> 
+                            <svg width="16" height="16" fill="currentColor" class="bi bi-file-earmark-person" viewBox="0 0 16 16">
+                                <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2v9.255S12 12 8 12s-5 1.755-5 1.755V2a1 1 0 0 1 1-1h5.5v2z"/>
+                              </svg> mas</button></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ngb-pagination class=" d-flex justify-content-center" *ngIf="lista_alumnos" [(collectionSize)]="longitud" [(page)]="page_number" aria-label="Default pagination"> </ngb-pagination>
+    </div>
+</div>

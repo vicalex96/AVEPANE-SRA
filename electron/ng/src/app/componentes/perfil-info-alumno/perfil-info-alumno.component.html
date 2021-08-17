@@ -1,0 +1,13 @@
+
+<ul class="list-group shadow " *ngIf="alumno">
+    <li class="list-group-item active text-center"> Perfil de alumno n°{{alumno.id}}</li>
+    <li class="list-group-item"> cedula: {{alumno.tipo_ci}}-{{alumno.ci}}</li>
+    <li class="list-group-item"> nombre: {{alumno.nombre}} {{alumno.segundo_nombre}} </li>
+    <li class="list-group-item"> apellido: {{alumno.apellido}} {{alumno.segundo_apellido}}</li>
+    <li class="list-group-item"> fecha_nacimiento: {{ alumno.fecha_nacimiento | date: 'dd/MM/yyyy' }}   </li>
+    <li class="list-group-item"> edad: {{getAge(alumno.fecha_nacimiento)}}</li>
+    <li class="list-group-item" *ngIf="alumno.genero == 'M'"> genero: masculino</li>
+    <li class="list-group-item" *ngIf="alumno.genero == 'F'"> genero: femenino</li>
+    <li class="list-group-item"> correo: {{alumno.correo}}</li>
+
+</ul>

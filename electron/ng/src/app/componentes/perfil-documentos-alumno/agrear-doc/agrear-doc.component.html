@@ -1,0 +1,23 @@
+<div>
+    <form [formGroup]="documentoForm" (ngSubmit)="registrar()">
+        <div class="form-group" *ngIf="documentos"> 
+            <label> Elegir carrera </label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="id_documento.hasError(error.type) && (id_documento.dirty || id_documento.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <select class="form-control"  formControlName="id_documento" >
+                    <option  *ngFor="let doc of documentos" [value]="doc.id">{{doc.nombre}}</option>
+
+            </select>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary" [disabled]="documentoForm.invalid" type="sutmit">
+                registrar documento
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,61 @@
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-around ml-1 bg-primary text-white rounded shadow">
+        <button type="button"  class="btn btn-danger shadow mt-1 mb-1" routerLink="/consultas" > 
+            <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+        regresar 
+        </button>
+        <div class="mt-2">
+            Consulta Datos de Alumno
+        </div>
+        <div class="mt-2">
+            <svg width="24" height="24" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+                <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+              </svg>
+              AVEPANE-SRA 
+        </div >
+    </div>
+
+    <div class="row justify-content-center" *ngIf="alumno">
+        <div class="col-md-6 mt-3 ">
+            <app-perfil-info-alumno 
+            [modo_edicion] = "'false'"
+            [alumno] = "alumno"
+            > </app-perfil-info-alumno>
+        </div>
+        <div class="col-md-6 mt-3 " *ngIf="inscripcion">
+            <app-perfil-inscripcion-alumno 
+            [modo_edicion] = "'false'"
+            [inscripcion] = "inscripcion"
+            > </app-perfil-inscripcion-alumno>
+        </div>
+
+        <div class="col-md-6 mt-3 " *ngIf="inscripcion && documentos">
+            <app-perfil-documentos-alumno
+            [modo_edicion] = "'false'"
+            [inscripcion] = "inscripcion"
+            [documentos] = "documentos"
+            [id_alumno] = "id_alumno"
+            > </app-perfil-documentos-alumno>
+        </div>
+        
+        <div class="col-md-6  mt-3" *ngIf="telefonos">
+            <app-perfil-telefono-alumno  
+            [modo_edicion] = "'false'"
+            [telefonos] = "telefonos"
+            [id_alumno] = "id_alumno"
+            > </app-perfil-telefono-alumno>
+        </div>
+
+        <div class="col-md-12 mt-3 " *ngIf="inscripcion">
+            <app-comp-materia
+                [modo_edicion] = "'false'"
+                [id_alumno] = "id_alumno"
+                [id_carrera] = "id_carrera"
+                [id_inscripcion] = "id_inscripcion"
+            ></app-comp-materia>
+        </div>
+    </div>
+</div>

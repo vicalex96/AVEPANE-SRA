@@ -1,0 +1,123 @@
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-around ml-1 bg-primary text-white rounded shadow">
+        <button type="button"  class="btn btn-danger shadow mt-1 mb-1" routerLink="/registro" > 
+            <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+        regresar 
+        </button>
+        <div class="mt-2">
+            Edición de Alumno
+        </div >
+        <div class="mt-2">
+            <svg width="24" height="24" fill="currentColor" class="bi bi-vector-pen" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z"/>
+                <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z"/>
+              </svg>
+              AVEPANE-SRA 
+        </div >
+    </div>
+    
+    <div class="row justify-content-center" *ngIf="alumno">
+        <div class="col-md-6 mt-3">
+            <app-perfil-info-alumno 
+            [modo_edicion] = "'true'"
+            [alumno] = "alumno"
+            > </app-perfil-info-alumno>
+        </div>
+        
+        <div class="col-md-6 mt-3 " >
+            <div 
+            class="col  bg-warning" 
+            *ngIf="inscripcion && inscripcion.materias_inscritas != null"> 
+                no se pueden editar inscripciones con materias inscritas
+            </div>
+
+            <div class="container d-flex justify-content-end bg-primary rounded mb-3 shadow ">
+                <h6 class=" mr-4 mt-3 text-white">
+                    edición de inscripción
+                </h6>
+                <button type="button" 
+                    class="btn btn-success mt-1 mb-1 shadow" 
+                    *ngIf="inscripcion && inscripcion.materias_inscritas == null && inscribir == false && editar == false"
+                    (click)="editar = true; inscribir = false;" 
+                    >
+                    editar
+                </button>
+                <button type="button" 
+                    *ngIf=" inscribir == false && editar == false"
+                    class="btn btn-warning mt-1 mb-1 ml-3 shadow" 
+                    (click)="inscribir = true; editar = false " 
+                    >
+                    re/Inscribir
+                </button>
+                
+                <button type="button" 
+                    class="btn btn-danger mt-1 mb-1 shadow" 
+                    *ngIf="inscribir == true || editar == true"
+                    (click)="inscribir = false; editar = false "
+                    >
+                    salir de edición
+                </button>
+
+            </div>
+
+            
+
+            <div class="container mb-3">
+                <ul class="list-group shadow"  *ngIf="inscribir == true">  
+                    <li  class="list-group-item bg-warning text-center "> Agregar nueva inscripción:</li>
+                    <li class="bg-light">
+                        <app-agregar-ins 
+                        [id_alumno] = "id_alumno"
+                        (actualizacion) = "getInscripcion($event)"
+                        >
+                        </app-agregar-ins>
+                    </li> 
+                </ul>  
+            </div>
+            
+            <div class="container mb-3">
+                <ul class="list-group shadow"  *ngIf="editar == true && inscripcion">  
+                    <li  class="list-group-item bg-warning text-center text-black"> Editar Inscripción:</li>
+                    <li class="bg-light">
+                        <app-editar-ins 
+                        [inscripcion] = "inscripcion"
+                        (actualizacion) = "getInscripcion($event)"
+                        >
+                        </app-editar-ins>
+                    </li> 
+                </ul>  
+            </div>
+
+            <app-perfil-inscripcion-alumno *ngIf="inscripcion && documentos && inscribir == false && editar == false" 
+            [modo_edicion] = "'true'"
+            [inscripcion] = "inscripcion"
+            [documentos] = "documentos"
+            [id_alumno] = "id_alumno"
+            > </app-perfil-inscripcion-alumno>
+        </div>
+
+        <div class="col-md-6 mt-3 " *ngIf="inscripcion && documentos">
+            <app-perfil-documentos-alumno
+            [modo_edicion] = "'true'"
+            [inscripcion] = "inscripcion"
+            [documentos] = "documentos"
+            [id_alumno] = "id_alumno"
+            (actualizacion) = "getDocumentos($event)" 
+            > </app-perfil-documentos-alumno>
+        </div>
+    
+        
+        <div class="col-md-6  mt-3" *ngIf="telefonos">
+            <app-perfil-telefono-alumno  
+            [modo_edicion] ="'true'"
+            [telefonos] = "telefonos"
+            [id_alumno] = "id_alumno"
+            (actualizacion) = "getTelefonos($event)"
+            > </app-perfil-telefono-alumno>
+        </div>
+
+    </div>
+</div>
+

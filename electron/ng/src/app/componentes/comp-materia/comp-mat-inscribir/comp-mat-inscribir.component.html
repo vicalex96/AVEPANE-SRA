@@ -1,0 +1,70 @@
+<div class="container bg-light rounded">
+
+    <div class="row bg-warning d-flex justify-content-center  rounded-top"> 
+        <div class="mt-3 mb-2"> Inscribir materia
+        </div> 
+    </div>
+
+    <form [formGroup]=" MateriaForm" (ngSubmit)="registrar()">
+        <div class="form-group" *ngIf="Materias"> 
+            <label> Elegir materia</label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="id_materia.hasError(error.type) && (id_materia.dirty || id_materia.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <select class="form-control"  formControlName="id_materia"(change)="cargarInfoMateria($event.target.value)" >
+                <option *ngFor="let materia of Materias" [value]="materia.id">{{materia.nombre}}({{materia.id}})</option>
+            </select>
+        </div>
+
+        <div class="container  bg-white shadow"  *ngIf="slt_materia">
+            <div class="row">
+                <dt class="col-sm-2">codigo</dt>
+                <dd class="col-sm-10">{{ slt_materia.id }}</dd>
+              
+                <dt class="col-sm-2">nombre:</dt>
+                <dd class="col-sm-10">{{ slt_materia.nombre }}</dd>
+    
+                <dt class="col-sm-2">valor:</dt>
+                <dd class="col-sm-10">{{ slt_materia.uc }}UC </dd>
+              
+                <dt class="col-sm-2">Descripcion:</dt>
+                <dd class="col-sm-10">{{ slt_materia.descripcion }}</dd>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label> fecha de inscripcion de materia: </label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="fecha_cursado.hasError(error.type) && (fecha_cursado.dirty || fecha_cursado.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <div class="row md-12">
+                <div class="col md-10">
+                    <input class="form-control" type="date" min="2000-01-01" formControlName="fecha_cursado" > 
+                </div>    
+            </div>
+        </div>
+
+        <div class="form-group" *ngIf="Periodos"> 
+            <label> Elegir periodo</label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="id_periodo.hasError(error.type) && (id_periodo.dirty || id_periodo.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <select class="form-control"  formControlName="id_periodo"(change)="cargarInfoMateria($event.target.value)" >
+                <option *ngFor="let periodo of Periodos" [value]="periodo.id">{{periodo.nombre}}</option>
+            </select>
+        </div>
+
+        <div>
+            <button type="button"  class="btn btn-primary" [disabled]="MateriaForm.invalid" type="sutmit" style=" margin: 10px;" > registrar </button>
+        </div>
+    </form>
+</div>

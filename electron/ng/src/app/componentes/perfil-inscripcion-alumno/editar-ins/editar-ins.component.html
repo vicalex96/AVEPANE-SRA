@@ -1,0 +1,78 @@
+<div class="container mb-3" >
+
+    <form [formGroup]="inscripcionForm" (ngSubmit)="registrar()" *ngIf="inscripcionForm">
+
+        <div class="form-group" *ngIf="carreras"> 
+            <label> Elegir carrera </label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="carrera_id.hasError(error.type) && (carrera_id.dirty || carrera_id.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <select class="form-control"  formControlName="id_carrera">
+                <option value="" disabled selected hidden> --- </option>
+                <option *ngFor="let carrera of carreras" [value]="carrera.id">{{carrera.nombre}}</option>
+            </select>
+        </div>
+
+
+
+        <div class="form-group">
+            <label> fecha de inscripcion: </label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="fecha_inscripcion.hasError(error.type) && (fecha_inscripcion.dirty || fecha_inscripcion.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <div class="row md-12">
+                <div class="col md-10">
+
+                    <input class="form-control" type="date" min="2000-01-01" formControlName="fecha_inscripcion" > 
+                </div>    
+            </div>
+
+        </div>
+
+
+        <div class="form-group"> 
+            <label> tipo de inscripcion</label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="tipo_ins.hasError(error.type) && (tipo_ins.dirty || tipo_ins.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <select class="form-control"  formControlName="tipo_ins"  >
+                <option value="" disabled selected hidden> --- </option>
+                <option value="inscrito">Inscripcion</option>
+                <option value="reincorporado">Reincorporado</option>
+                <option value="reinscrito">Reinscripcion </option>
+            </select >
+        </div>
+
+        <div class="form-group"> 
+            <label> estado de la inscripcion</label>
+            <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
+                <ng-container 
+                *ngIf="estado_ins.hasError(error.type) && (estado_ins.dirty || estado_ins.touched)" >
+                  <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                </ng-container>
+            </div>
+            <select class="form-control"  formControlName="estado_ins" >
+                <option value="" disabled selected hidden>---</option>
+                <option value="activo">activo</option>
+                <option value="retirado">retirado</option>
+                <option value="finalizado">finalizado </option>
+                <option value="procesando">procesando </option>
+            </select>
+        </div>
+
+        <div>
+            <button type="button" class="btn btn-primary" [disabled]="inscripcionForm.invalid" type="sutmit">
+                Actualizar datos
+            </button>
+        </div>
+    </form>
+</div>

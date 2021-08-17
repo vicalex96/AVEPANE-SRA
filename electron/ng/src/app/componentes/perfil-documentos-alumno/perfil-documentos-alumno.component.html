@@ -1,0 +1,35 @@
+<div class="container d-flex justify-content-end bg-primary rounded mt-3 mb-3 shadow " *ngIf="modo_edicion == 'true'">
+    <h6 class=" mr-4 mt-3 text-white">
+        edición documentos asignados
+    </h6>
+    <button type="button" 
+        class="btn btn-success mt-1 mb-1 shadow" 
+        *ngIf="editar_docs == false"
+        (click)="editar_docs = true"
+        >
+        editar
+    </button>
+    <button type="button" 
+        class="btn btn-danger mt-1 mb-1 shadow" 
+        *ngIf="editar_docs == true"
+        (click)="editar_docs = false"
+        >
+        salir de edición
+    </button>
+</div>
+<ul class="list-group mt-3 shadow" *ngIf="documentos" >
+
+    <li class="list-group-item bg-primary  text-center" [ngClass] = "{'bg-warning': editar_docs, 'text-white': !editar_docs}">Documentos entregados:</li>
+    <div *ngFor=" let doc of documentos">
+        <li class="list-group-item" *ngIf="doc.id_alumno"> 
+            <button class="btn btn-danger" *ngIf="editar_docs == true" type="button" (click)="eliminarDoc(doc.id)">
+                eliminar
+            </button>{{doc.nombre}} </li>
+        <li class="list-group-item text-danger" *ngIf="doc.id_alumno == null">
+            <button class=" btn btn-success" *ngIf="editar_docs == true" type="button" (click)="agregarDoc(doc.id)"> 
+                agregar
+            </button>
+             Falta: {{doc.nombre}} </li>
+    </div>
+    
+</ul>
