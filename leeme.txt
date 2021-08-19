@@ -1,0 +1,6 @@
+Los siguiente comando son ejecutados en modo de desarrollo
+-> para ejecutar el servidor backend
+    npm run dev
+-> para ejecutar el servidor de angular se debe ejecutar
+    ng serve
+-> para ejecutar la compilacion del electrone se debe ejecutar el siguiente comando
