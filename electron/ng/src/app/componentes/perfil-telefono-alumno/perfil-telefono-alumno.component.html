@@ -19,16 +19,12 @@
 </div>
 
 <div *ngIf="telefonos"> 
-    <div class="container mb-3">
-        <ul class="list-group shadow"  *ngIf="en_edicion">  
-            <li  class="list-group-item bg-warning text-center ">agregar numero de telefono:</li>
-            <li class="bg-light">
-                <app-agregar-tlf *ngIf="en_edicion && modo_edicion == 'true'" 
-                [id_alumno] = "id_alumno"
-                (actualizacion) = "emitirEvento($event)"
-                ></app-agregar-tlf>
-            </li> 
-        </ul>  
+    <div class="container mb-3" *ngIf="en_edicion">
+        <app-agregar-tlf *ngIf="en_edicion && modo_edicion == 'true'" 
+            [id_alumno] = "id_alumno"
+            (actualizacion) = "emitirEvento($event); en_edicion = false"
+        ></app-agregar-tlf>
+ 
     </div>
     <div class="container mb-3">
         <ul class="list-group shadow"  *ngIf="!en_edicion">

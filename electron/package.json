@@ -1,5 +1,4 @@
 {
-  
   "name": "electron",
   "version": "1.0.0",
   "description": "A minimal Electron application",
@@ -24,4 +23,3 @@
     "electron-packager": "^15.3.0"
   }
 }
-

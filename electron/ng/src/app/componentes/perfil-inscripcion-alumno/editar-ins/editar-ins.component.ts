@@ -70,10 +70,10 @@ export class EditarInsComponent implements OnInit {
         () =>{},
         (data) =>{
           if(data.status == "200"){
-            console.log('todo bien');
+            alert('inscripción editada');
             this.emitirEvento();
           }
-          else console.log('algo salio mal!'); 
+          else alert('=/ ocurrio un problema, revise la conexión con el servidor'); 
         }
       ) 
 
@@ -81,7 +81,6 @@ export class EditarInsComponent implements OnInit {
   }
 
   emitirEvento(arg?){
-    console.log('evento activado lista de telefonos')
     this.actualizacion.emit( this.contenido);
   }
 }

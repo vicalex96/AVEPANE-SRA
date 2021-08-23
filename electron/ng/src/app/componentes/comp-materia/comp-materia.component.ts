@@ -46,4 +46,25 @@ export class CompMateriaComponent implements OnInit {
     })
   }
   
+  eliminarMateria(materia){
+    let plantilla = {
+      id_alumno:  this.id_alumno,
+      id_carrera: this.id_carrera,
+      id_inscripcion: this.id_inscripcion,
+      id_materia: materia.id_materia,
+      id_periodo: materia.id_periodo,
+    }
+
+    this.servicioMatricula.deleteMateriaInscrita(plantilla).subscribe(
+    () =>{},
+    (data) =>{
+      if(data.status == "200"){
+        this.getInsMateriasAlumno();
+        alert('materia eliminada exitosamente');
+      }
+      else alert('algo salio mal!, podria ser la conexión a internet'); 
+    })
+
+  }
+
 }

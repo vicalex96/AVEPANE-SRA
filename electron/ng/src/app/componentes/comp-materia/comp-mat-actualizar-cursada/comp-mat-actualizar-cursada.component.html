@@ -9,7 +9,7 @@
     
     <form [formGroup]="materiaForm" (ngSubmit)="actualizar()">
         <div class="form-group"> 
-            <label> Elegir materia</label>
+            <label> *Elegir opcion</label>
             <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
                 <ng-container 
                 *ngIf="estado.hasError(error.type) && (estado.dirty || estado.touched)" >
@@ -33,6 +33,7 @@
             </div>
             <input class="form-control"  formControlName="nota" type="text"/>
         </div>
+        <p class="bg-warning text-center"> *: obligatorio</p>
 
         <div class="col d-flex justify-content-center" >
             <button type="button"  class="btn btn-primary" [disabled]="materiaForm.invalid" type="sutmit" style=" margin: 10px;" > registrar </button>

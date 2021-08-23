@@ -16,6 +16,7 @@ export class RegistrarPerfilComponent implements OnInit {
   id_alumno;
   inscribir = false;
   editar = false; 
+  correo_edicion = false;
   
   constructor( private route: ActivatedRoute,
                private servicioAlumno: AlumnoService) { }

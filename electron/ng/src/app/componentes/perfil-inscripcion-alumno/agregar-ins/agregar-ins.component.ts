@@ -55,10 +55,10 @@ export class AgregarInsComponent implements OnInit {
         () =>{},
         (data) =>{
           if(data.status == "200"){
-            console.log('todo bien');
+            alert('inscripción registrada');
             this.emitirEvento();
           }
-          else console.log('algo salio mal!'); 
+          else alert('=/ ocurrio un problema, revise la conexión con el servidor'); 
         }
       ) 
 

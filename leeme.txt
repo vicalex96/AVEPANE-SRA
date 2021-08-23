@@ -4,3 +4,7 @@ Los siguiente comando son ejecutados en modo de desarrollo
 -> para ejecutar el servidor de angular se debe ejecutar
     ng serve
 -> para ejecutar la compilacion del electrone se debe ejecutar el siguiente comando
+    npx electron-packager rutaDeLaCarpetaDeElectrone AVEPANE-SRA --platform=win32 --arch=x64
+    ejemplo(si estamos en la carpeta electrone): npx electron-packager . AVEPANE-SRA --platform=win32 --arch=x64 --icon=./icon/Logo-Avepane.ico --version-string.ProductName="AVEPANE-SRA"
+
+        agregar --overwrite para reescribir cualquier compilado hecho anteriormente

@@ -20,9 +20,13 @@ export class MatriculaService {
   getMAteriasAlumno(id_alumno,id_carrera,id_inscripcion){
     return this.http.get( getAPI_URL() +'/materias/alumno/?id_alumno='+id_alumno+'&id_carrera='+id_carrera+'&id_inscripcion='+id_inscripcion);
   }
+
+  deleteMateriaInscrita(data){
+    return this.http.post( getAPI_URL() +'/materia/cursada/eliminar/',data);
+  }
   
   getPeriodos(){
-    return this.http.get( getAPI_URL() +'/lista-periodos');
+    return this.http.get( getAPI_URL() +'/periodos/');
   }
   insertMateriaACursar(data){
     return this.http.post( getAPI_URL() +'/materia/cursar',data);

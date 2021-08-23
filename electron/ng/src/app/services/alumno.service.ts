@@ -27,6 +27,10 @@ export class AlumnoService {
     return this.http.post(getAPI_URL() +'/alumno/registrar',alumno);
   }
 
+  updateCorreoAlumno(data){
+    return this.http.post( getAPI_URL() +'/alumno/actualizar/correo/',data);
+  }
+
   getAlumnos(){
     return this.http.get( getAPI_URL() +'/alumnos');
   }

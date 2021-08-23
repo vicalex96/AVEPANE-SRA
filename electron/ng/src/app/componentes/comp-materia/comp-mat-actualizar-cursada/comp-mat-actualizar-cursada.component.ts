@@ -21,15 +21,15 @@ export class CompMatActualizarCursadaComponent implements OnInit {
   get estado() {return this.materiaForm.get('estado')}
 
   materiaForm = new FormGroup({
-    nota: new FormControl('',[Validators.required,Validators.min(0),Validators.max(20)]),
+    nota: new FormControl('', [Validators.min(-1),Validators.max(20),Validators.pattern("-*[0-9]*")]),
     estado: new FormControl('',[Validators.required])
   })
 
   public errorMessages = {
     nota:[
-      { type: 'required', message: 'campo requerido'},
       { type: 'max', message: 'nota invalida, rango 0-20'},
-      { type: 'min',  message:'nota invalida, rango 0-20'}
+      { type: 'min',  message:'nota invalida, rango 0-20'},
+      { type: 'pattern',  message: 'solo puede contener números'}
     ],
     campo_requerido:[
       { type: 'required', message: 'campo requerido'}

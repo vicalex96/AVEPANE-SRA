@@ -15,6 +15,7 @@ const getAlumnos = async(req,res,next) => {
         res.status(500).send(e);
     }
 }
+
 const getAlumnosExt = async (req, res, next) => {
     try {
         const{
@@ -43,7 +44,7 @@ const getAlumnosExt = async (req, res, next) => {
         console.log("hola error");
         res.status(500).send(e);
     }
-};
+}
 
 const getAlumno = async (req,res,next)=>{
     try{  
@@ -100,7 +101,7 @@ const createAlumno = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
 
 const updateAlumno =  async (req, res) => {
     try{
@@ -132,6 +133,27 @@ const updateAlumno =  async (req, res) => {
     }
 }
 
+const updateCorreoAlumno =  async (req, res) => {
+    try{
+        
+        const {
+            id,
+            correo,
+        } = req.body;
+        console.log('actualizando correo', req.body)
+        const response = await pool.query(`
+            UPDATE alumno
+                set correo = $2
+                where id = $1`,
+            [id,correo]);
+
+        res.status(200).send("materia inscrita correctamente");
+    }catch(e){
+        console.log(e)
+        res.status(500).send(e)
+    }
+}
+
 const deleteAlumno = async (req, res, next) => {
     try {
         const id = req.query.id;
@@ -146,7 +168,7 @@ const deleteAlumno = async (req, res, next) => {
         console.log(e.hint);
         res.status(500).send(e);
     }
-};
+}
 
 const getinscripciones = async (req,res,next)=>{
     try{  
@@ -281,7 +303,7 @@ const insertTelefono = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
 
 const deleteTelefono = async (req, res) => {
     try {
@@ -299,7 +321,7 @@ const deleteTelefono = async (req, res) => {
         console.log('no se pudo eliminar')
         res.status(500).send(e);
     }
-};
+}
 
 const getCarreras = async(req, res,next) => {
     try{
@@ -310,7 +332,7 @@ const getCarreras = async(req, res,next) => {
         console.log(e.hint);
         res.status(500).send(e);
     }
-};
+}
 
 const getMaterias = async(req, res,next) => {
     try{
@@ -323,7 +345,7 @@ const getMaterias = async(req, res,next) => {
         console.log(e.hint);
         res.status(500).send(e);
     }
-};
+}
 
 const getMateriasAlumno = async(req, res,next) => {
     try{
@@ -345,7 +367,7 @@ const getMateriasAlumno = async(req, res,next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
 
 const getPeriodos = async(req, res,next) => {
     try{
@@ -357,7 +379,67 @@ const getPeriodos = async(req, res,next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
+const getPeriodosSinMaterias = async(req, res,next) => {
+    try{
+        console.log('Lista periodos para inscripcion')
+        const response = await pool.query(`
+            select p.* from periodo p
+            where p.id not in ( select id_periodo from cursado)
+            order by nombre desc
+            `);
+        res.send(response.rows);
+    }
+    catch(e){
+        console.log(e);
+        res.status(500).send(e);
+    }
+}
+
+const updatePeriodo = async(req, res, next) => {
+    try {
+        const {
+            id,
+            nombre
+        } = req.body;
+        console.log("actualizar periodo: ", req.body);
+
+        const response = await pool.query(
+            `update periodo 
+                set nombre = $2,
+                where id = $1`,
+            [
+                id,
+                nombre
+            ]
+        );
+        res.send("Periodo Actualizado correctamente");
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    } 
+}
+
+const deletePeriodo = async(req, res, next) =>{
+    try {
+        const {
+            id,
+        } = req.body;
+        console.log("eliminar periodo: ",id);
+
+        const response = await pool.query(
+            `delete from periodo 
+                where id = $1`,
+            [
+                id,
+            ]
+        );
+        res.send("periodo eliminado");
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    } 
+}
 
 const insertMateria = async (req, res, next) => {
     try {
@@ -390,7 +472,7 @@ const insertMateria = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
 
 const updateMateria = async (req, res, next) => {
     try {
@@ -429,7 +511,41 @@ const updateMateria = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
+
+const eliminarMateriaCursada = async (req, res, next) => {
+    try {
+        const {
+            id_alumno,
+            id_carrera,
+            id_inscripcion,
+            id_materia,
+            id_periodo
+        } = req.body;
+        console.log("eliminar materia: ", req.body);
+
+        const response = await pool.query(
+            `delete from cursado 
+                where id_alumno = $1
+                    and id_carrera = $2
+                    and id_inscripcion = $3
+                    and id_materia =$4
+                    and id_periodo =$5
+                    and estado = 'cursando'`,
+            [
+                id_alumno,
+                id_carrera,
+                id_inscripcion,
+                id_materia,
+                id_periodo
+            ]
+        );
+        res.send("materia eliminada");
+    } catch (e) {
+        console.log(e);
+        res.status(500).send(e);
+    }
+}
 
 const insertInscripcion = async (req, res, next) => {
     try {
@@ -457,7 +573,7 @@ const insertInscripcion = async (req, res, next) => {
         console.log(e.hint);
         res.status(500).send(e);
     }
-};
+}
 
 const updateInscripcion = async (req, res, next) => {
     try {
@@ -535,7 +651,7 @@ const updateInscripcion = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
 
 const insertarDocumentoIns = async (req, res, next) => {
     try {
@@ -561,7 +677,7 @@ const insertarDocumentoIns = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
 
 const eliminarDocumentoIns = async (req, res, next) => {
     try {
@@ -591,7 +707,9 @@ const eliminarDocumentoIns = async (req, res, next) => {
         console.log(e);
         res.status(500).send(e);
     }
-};
+}
+
+
 
 module.exports = {
     getCarreras,
@@ -599,7 +717,11 @@ module.exports = {
     getMateriasAlumno,
     insertMateria,
     updateMateria,
+    eliminarMateriaCursada,
     getPeriodos,
+    getPeriodosSinMaterias,
+    updatePeriodo,
+    deletePeriodo,
     insertInscripcion,
     updateInscripcion,
     insertarDocumentoIns,
@@ -609,6 +731,7 @@ module.exports = {
     getAlumno,
     createAlumno,
     updateAlumno,
+    updateCorreoAlumno,
     deleteAlumno,
     getinscripciones,
     getinscripcion,

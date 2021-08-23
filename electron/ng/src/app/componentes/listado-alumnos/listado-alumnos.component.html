@@ -1,13 +1,13 @@
 <div class="row mt-3 ml-5 mr-5" *ngIf="lista_alumnos">
     <div class="col">
         <div class="row d-flex justify-content-around align-items-center align-items-center">
-                <button *ngIf="modo_edicion == 'true'" type="button"  class="btn btn-success shadow mb-3"  style=" margin: 10px;" routerLink="/registro/nuevo-registro" > 
-                    <svg width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                        <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                      </svg>
-                    registrar alumno
-                </button>
-                
+                    <button *ngIf="modo_edicion == 'true'" type="button"  class="btn btn-success shadow mb-3"  style=" margin: 10px;" routerLink="/registro/nuevo-registro" > 
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                            <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+                          </svg>
+                        registrar alumno
+                    </button>
+
                     <select  class="form-select mb-3  btn btn-outline-primary bg-primary text-light shadow " name="carrera_elegir " [(ngModel)] =" elegir_carrera" >
                         <option value="" disabled selected hidden>filtro Carrera</option>
                         <option [value]="'*'" *ngIf="prefiltro != 'materias' "> no filtrar</option>
@@ -18,8 +18,9 @@
                         <option [value]="'inscritos'" > inscritos </option>
                       </select>
 
-                <div class="form-group mb-3 " >
-                    <input class="from-control shadow" type="text" name="busqueda_filtro" placeholder="buscar persona"                     [(ngModel)] = "busqueda_filtro">
+
+                <div class="form-group mb-4 " >
+                    <input class="from-control shadow" type="text" name="busqueda_filtro" placeholder="buscar persona" [(ngModel)] = "busqueda_filtro">
                 </div>
         </div>  
         <div class="col-md-12 "> 

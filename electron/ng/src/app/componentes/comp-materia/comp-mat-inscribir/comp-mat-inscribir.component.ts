@@ -83,12 +83,17 @@ export class CompMatInscribirMatComponent implements OnInit {
         () =>{},
         (data) =>{
           if(data.status == "200"){
-            console.log('todo bien');
+            alert('materia inscrita correctamente'); 
+            this.MateriaForm = new FormGroup({
+              id_materia: new FormControl('',[Validators.required]),
+              fecha_cursado: new FormControl('',[Validators.required]),
+              id_periodo: new FormControl(20211,[Validators.required])
+            })
+            this.slt_materia = null;
             this.emitirEvento();
           }
           else {
-            console.log('algo salio mal!'); 
-            alert('no se pudo registrar la materia, comprobar que no se repiten materas en un mismo periodo')
+            alert('=/ ocurrio un problema,no se pudo registrar la materia, revise la conexión con el servidor o si la materia ya esta inscrita'); 
           }
         }
       ) 
@@ -97,7 +102,6 @@ export class CompMatInscribirMatComponent implements OnInit {
   }
 
   emitirEvento(arg?){
-    console.log('evento activado lista de telefonos')
     this.actualizacion.emit( this.contenido);
   }
 }

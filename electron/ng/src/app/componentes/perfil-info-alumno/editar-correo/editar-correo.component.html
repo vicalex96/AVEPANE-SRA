@@ -1,0 +1,25 @@
+<div class="container mt-3">
+    <ul class="list-group shadow">  
+        <li  class="list-group-item bg-warning text-center ">agregar o cambiar correo:</li>
+        <li class="bg-light container">
+            <form [formGroup]="CorreoForm" (ngSubmit)="registrar()">
+                <div class="form-group">
+                    <label> correo: </label>
+                    <div *ngFor="let error of errorMessages.email" style="margin: 0;">
+                        <ng-container 
+                        *ngIf="email.hasError(error.type) && (email.dirty || email.touched)" >
+                          <div style="margin: 0;" class="bg-danger" style="color: white; padding-left: 10px;"> {{error.message}}</div>
+                        </ng-container>
+                    </div>
+                    <input  class="form-control" type="email" formControlName="email"/>
+                </div>
+        
+                <div>
+                    <button type="button"  class="btn btn-primary" [disabled]="CorreoForm.invalid" type="sutmit" style=" margin: 10px;" > actualizar 
+                    </button>
+                </div>
+            </form>
+        </li> 
+    </ul> 
+
+</div>

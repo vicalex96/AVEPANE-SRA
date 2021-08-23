@@ -24,8 +24,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CarrerasModule } from './carreras/carreras.module';
 import { NuevosEstudiantesModule } from './nuevos-estudiantes/nuevos-estudiantes.module';
-import { InicioComponent } from './inicio/inicio.component';
-import { InicioModule } from './inicio/inicio.module';
 import { NgbPaginationModule, NgbAlertModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ComponentesComponent } from './componentes/componentes.component';
 import { PagPrincipalComponent } from './pag-principal/pag-principal.component';
@@ -51,11 +49,12 @@ import { EditarInsComponent } from './componentes/perfil-inscripcion-alumno/edit
 import { RegistroComponent } from './registro/registro.component';
 import { RegistroModule } from './registro/registro.module';
 import { MatriculaComponent } from './matricula/matricula.component';
+import { EditarCorreoComponent } from './componentes/perfil-info-alumno/editar-correo/editar-correo.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    InicioComponent,
     ComponentesComponent,
     RegistrarAlumnoComponent,
     PagPrincipalComponent,
@@ -81,6 +80,8 @@ import { MatriculaComponent } from './matricula/matricula.component';
     MatriculaComponent,
     PerfilMatriculaComponent,
     PerfilDocumentosAlumnoComponent,
+    EditarCorreoComponent,
+
     
 
 
@@ -93,7 +94,6 @@ import { MatriculaComponent } from './matricula/matricula.component';
     BrowserModule,
     CarrerasModule,
     NuevosEstudiantesModule,
-    InicioModule,
     PagPrincipalModule,
     PerfilConsultaModule,
     ConsultaModule,

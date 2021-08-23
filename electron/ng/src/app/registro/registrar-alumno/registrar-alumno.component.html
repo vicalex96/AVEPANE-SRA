@@ -10,7 +10,7 @@
     <div class="col bg-light ">
         <form [formGroup]="registroForm" (ngSubmit)="registrar()">
             <div class="form-group"> 
-                <label> cédula de identidad: </label>
+                <label> *cédula de identidad: </label>
                 <div *ngFor="let error of errorMessages.cedula" style="margin: 0;">
                     <ng-container 
                     *ngIf="cedula.hasError(error.type) && (cedula.dirty || cedula.touched)" >
@@ -21,7 +21,7 @@
             </div>
 
             <div class="form-group"> 
-                <label> tipo de cédula </label>
+                <label> *tipo de cédula </label>
                 <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
                     <ng-container 
                         *ngIf="tipo_cedula.hasError(error.type) && (tipo_cedula.dirty || tipo_cedula.touched)" >
@@ -35,7 +35,7 @@
             </div>
             
             <div class="form-group">
-                <label> nombre: </label>
+                <label> *nombre: </label>
                 <div *ngFor="let error of errorMessages.nombre_apellido" style="margin: 0;">
                     <ng-container 
                         *ngIf="nombre.hasError(error.type) && (nombre.dirty || nombre.touched)" >
@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group">
-                <label> apellido: </label>
+                <label> *apellido: </label>
                 <div *ngFor="let error of errorMessages.nombre_apellido" style="margin: 0;">
                     <ng-container 
                     *ngIf="apellido.hasError(error.type) && (apellido.dirty || apellido.touched)" >
@@ -81,7 +81,7 @@
 
                 
             <div class="form-group">
-                <label> género: </label>
+                <label> *género: </label>
                 <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
                     <ng-container 
                     *ngIf="genero.hasError(error.type) && (genero.dirty || genero.touched)" >
@@ -96,7 +96,7 @@
 
                 
             <div class="form-group">
-                <label> fecha de nacimiento: </label>
+                <label> *fecha de nacimiento: </label>
                 <div *ngFor="let error of errorMessages.campo_requerido" style="margin: 0;">
                     <ng-container 
                     *ngIf="fecha_nacimiento.hasError(error.type) && (fecha_nacimiento.dirty || fecha_nacimiento.touched)" >
@@ -121,6 +121,7 @@
                     </div>
                     <input  class="form-control" type="email" formControlName="email"/>
             </div>
+            <p class="bg-warning text-center"> *: obligatorio</p>
 
             <div class="row">
                     <div class="col-md-6" style="display: flex; justify-content: flex-start;">
@@ -128,7 +129,7 @@
                             routerLink="/registro"
                         > 
                             
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <svg  width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
                             </svg>
                             regresar 
@@ -140,6 +141,7 @@
                 </div>
 
             </div>
+            
         </form>
     </div>
 

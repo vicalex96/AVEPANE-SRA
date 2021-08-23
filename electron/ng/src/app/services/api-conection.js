@@ -1,6 +1,6 @@
 
 const getAPI_URL = () => {
-    const url = 'http://localhost:3000';
+    const url = 'http://192.168.1.100:3000';
     return url;
 }
 
