@@ -1,10 +1,18 @@
 Los siguiente comando son ejecutados en modo de desarrollo
--> para ejecutar el servidor backend
+-> para ejecutar el servidor backend (antes ir a la carpeta de backend)
     npm run dev
--> para ejecutar el servidor de angular se debe ejecutar
-    ng serve
--> para ejecutar la compilacion del electrone se debe ejecutar el siguiente comando
-    npx electron-packager rutaDeLaCarpetaDeElectrone AVEPANE-SRA --platform=win32 --arch=x64
-    ejemplo(si estamos en la carpeta electrone): npx electron-packager . AVEPANE-SRA --platform=win32 --arch=x64 --icon=./icon/Logo-Avepane.ico --version-string.ProductName="AVEPANE-SRA"
 
-        agregar --overwrite para reescribir cualquier compilado hecho anteriormente
+-> para ejecutar el servidor de angular en desarrollo ejecutar (antes ir a la carpeta de forntend)
+    ng serve 
+
+-> para ejecutar la compilacion de la aplicacion, se debe ejecutar el siguiente comando, de esta forma optenemos el ejecutable que nos permite habrir la apliacion en cualquier pc con windows de 32 o 64 bits (antes ir a la carpeta de forntend) entonces ejecutamos alguno de los siguientes
+ 1.   npm run packager-x32 
+ 2.   npm run packager-x64
+esto nos creara una carpeta dentro de la carpeta backend
+
+-> podemos ver en desarrollo la aplicacion en versio de escritorio si ejecutamos el comando:
+    npm run electron
+
+
+
+si se quiere cambiar las direcciones IP para conectar al servidor pues sera necesario modificar el archivo database.js (para el acceso a la base de datos) en el backend o el archivo src/services/api-conexion.js en la carpeta de frontend para conseguir acceso al backend desde la aplicacion. Una vez modificados los archivos se debe compilar de nuevo el servidor y el cliente dependiendo de sus respectivos archivos.

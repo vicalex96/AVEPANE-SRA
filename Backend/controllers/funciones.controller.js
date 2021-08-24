@@ -11,7 +11,7 @@ const getAlumnos = async(req,res,next) => {
             ),'-') as carrera from alumno a `);
         res.status(200).json(response.rows);
     } catch (e) {
-        console.log(e.hint);
+        console.log(e);
         res.status(500).send(e);
     }
 }
@@ -40,7 +40,7 @@ const getAlumnosExt = async (req, res, next) => {
         console.log("hola ext");
         res.status(200).json(response.rows);
     } catch (e) {
-        console.log(e.hint);
+        console.log(e);
         console.log("hola error");
         res.status(500).send(e);
     }
@@ -55,7 +55,7 @@ const getAlumno = async (req,res,next)=>{
                                         [id])
         res.status(200).json(response.rows[0])
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -128,7 +128,7 @@ const updateAlumno =  async (req, res) => {
 
         res.status(200).json(response.rows);
     }catch(e){
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -165,7 +165,7 @@ const deleteAlumno = async (req, res, next) => {
         res.status(200);
         res.send("Se elimino correctamente la informacion");
     } catch (e) {
-        console.log(e.hint);
+        console.log(e);
         res.status(500).send(e);
     }
 }
@@ -179,7 +179,7 @@ const getinscripciones = async (req,res,next)=>{
                                         [id_alumno])
         res.status(200).json(response.rows)
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -205,7 +205,7 @@ const getinscripcion = async (req,res,next)=>{
                 );
         res.status(200).json(response.rows[0])
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -226,7 +226,7 @@ const getdocumento_faltantes = async (req,res,next)=>{
                                         [id_alumno,id_carrera,id_inscripcion])
         res.status(200).json(response.rows)
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -246,7 +246,7 @@ const getdocumentos = async (req,res,next)=>{
                                         [id_alumno,id_carrera,id_inscripcion])
         res.status(200).json(response.rows)
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -266,7 +266,7 @@ const insertDocumento = async (req, res, next) => {
         console.log('hola 200')
         res.send("documento guardado");
     } catch (e) {
-        console.log(e.hint);
+        console.log(e);
         console.log('hola 500')
         res.status(500).send(e);
     }
@@ -281,7 +281,7 @@ const getTelefonos = async (req,res,next)=>{
                                         [id_alumno])
         res.status(200).json(response.rows)
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         res.status(500).send(e)
     }
 }
@@ -317,7 +317,7 @@ const deleteTelefono = async (req, res) => {
         res.status(200).send("telefono eliminado");
         console.log('se eliminó correctamente')
     } catch (e) {
-        console.log(e.hint)
+        console.log(e)
         console.log('no se pudo eliminar')
         res.status(500).send(e);
     }
@@ -329,7 +329,7 @@ const getCarreras = async(req, res,next) => {
         res.send(response.rows);
     }
     catch(e){
-        console.log(e.hint);
+        console.log(e);
         res.status(500).send(e);
     }
 }
@@ -342,7 +342,7 @@ const getMaterias = async(req, res,next) => {
         res.send(response.rows);
     }
     catch(e){
-        console.log(e.hint);
+        console.log(e);
         res.status(500).send(e);
     }
 }
@@ -570,7 +570,7 @@ const insertInscripcion = async (req, res, next) => {
         );
         res.send("inscripcion guardada");
     } catch (e) {
-        console.log(e.hint);
+        console.log(e);
         res.status(500).send(e);
     }
 }
